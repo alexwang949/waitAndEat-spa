@@ -6,6 +6,6 @@ angular.module('myApp.controllers', [])
 myApp.controller('landingPageController', [function() {
 
 }]);
-myApp.controller('waitListController', [function() {
-
+myApp.controller('waitListController', ['$scope', function($scope) {
+	$scope.test = "hello";
 }]);
