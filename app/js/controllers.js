@@ -2,10 +2,10 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
+angular.module('myApp.controllers', [])
+myApp.controller('landingPageController', [function() {
 
-  }])
-  .controller('MyCtrl2', [function() {
+}]);
+myApp.controller('waitListController', [function() {
 
-  }]);
+}]);
