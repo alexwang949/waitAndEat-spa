@@ -6,13 +6,20 @@ angular.module('myApp.controllers', [])
 myApp.controller('landingPageController', [function() {
 
 }]);
-myApp.controller('waitListController', ['$scope', function($scope) {
-	$scope.parties = [];
+
+myApp.controller('waitListController', ['$scope', '$firebase', function($scope, $firebase) {
+
+	// establish connection to firebase db
+	var partiesFirebaseRef = new Firebase('https://waitandeat-alexwang.firebaseio.com');
+
+	// list of parties
+	$scope.parties = $firebase(partiesFirebaseRef); 
+	// single party
 	$scope.party = {name: '', phone: '', size: ''};
 
 	// define function to submit form
 	$scope.saveParty = function() {
-		$scope.parties.push($scope.party);
+		$scope.parties.$add($scope.party);
 		$scope.party = {name: '', phone: '', size: ''};
 	};
 }]);
