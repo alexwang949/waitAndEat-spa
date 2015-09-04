@@ -1,15 +1,15 @@
 <form ng-submit="saveParty()" class="form-inline party-form">
   <div class="form-group">
     <label class="sr-only" for="partyName">Email address</label>
-    <input ng-model="party.name" type="text" class="form-control" id="partyName" placeholder="name">
+    <input ng-model="newParty.name" type="text" class="form-control" id="partyName" placeholder="name">
   </div>
   <div class="form-group">
     <label class="sr-only" for="phoneNumber">Password</label>
-    <input ng-model="party.phone" type="text" class="form-control" id="phoneNumber" placeholder="phone">
+    <input ng-model="newParty.phone" type="text" class="form-control" id="phoneNumber" placeholder="phone">
   </div>  
   <div class="form-group">
     <label class="sr-only" for="sizeOfParty">Size of Party</label>
-    <input ng-model="party.size" type="text" class="form-control" id="sizeOfParty" placeholder="Size of Party">
+    <input ng-model="newParty.size" type="text" class="form-control" id="sizeOfParty" placeholder="Size of Party">
   </div>
   <button type="submit" class="btn btn-primary">Add Party</button>
 </form>
@@ -23,7 +23,7 @@
       <th>Actions</th>      
     </tr>
   </thead>
-  <tr ng-repeat="eachParty in parties">
+  <tr ng-repeat="eachParty in parties | orderByPriority">
     <td><input type="checkbox"></td>
     <td>
       <div><strong>{{ eachParty.name }} ({{ eachParty.size }} people)</strong></div>
@@ -34,8 +34,8 @@
       <div><!-- Add party notification --> </div>
     </td>
     <td>
-      <button type="submit" class="btn btn-success">Send SMS</button>      
-      <button type="submit" class="btn btn-danger">Remove</button>           
+      <button ng-click="sendTextMessage(eachParty.phone)" type="submit" class="btn btn-success">Send SMS</button>      
+      <button ng-click="parties.$remove(eachParty.$id)" type="submit" class="btn btn-danger">Remove</button>           
     </td>
   </tr>
 </table>
