@@ -10,16 +10,23 @@ myApp.controller('landingPageController', [function() {
 myApp.controller('waitListController', ['$scope', '$firebase', function($scope, $firebase) {
 
 	// establish connection to firebase db
-	var partiesFirebaseRef = new Firebase('https://waitandeat-alexwang.firebaseio.com');
+	var partiesFirebaseRef = new Firebase('https://waitandeat-alexwang.firebaseio.com/parties');
 
-	// list of parties
+	// Connect $sope.parties to live Firebase DB
 	$scope.parties = $firebase(partiesFirebaseRef); 
-	// single party
+	// Object to store data from waitlist formj
 	$scope.newParty = {name: '', phone: '', size: ''};
 
-	// define function to submit form
+	//function to save a new party to Firebase DB
 	$scope.saveParty = function() {
 		$scope.parties.$add($scope.newParty);
 		$scope.newParty = {name: '', phone: '', size: ''};
 	};
+
+	//function to send text message to a party.
+	$scope.sendTextMessage = function(phoneNumber) {
+		var textMessageRef = new Firebase('https://waitandeat-alexwang.firebaseio.com/textmessages');
+		var textMessages = $firebase(textMessageRef);
+		textMessages.$add({phoneNumber: phoneNumber});
+	}
 }]);

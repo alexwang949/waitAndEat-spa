@@ -34,7 +34,7 @@
       <div><!-- Add party notification --> </div>
     </td>
     <td>
-      <button type="submit" class="btn btn-success">Send SMS</button>      
+      <button ng-click="sendTextMessage(eachParty.phone)" type="submit" class="btn btn-success">Send SMS</button>      
       <button ng-click="parties.$remove(eachParty.$id)" type="submit" class="btn btn-danger">Remove</button>           
     </td>
   </tr>
