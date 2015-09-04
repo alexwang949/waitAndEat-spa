@@ -15,11 +15,11 @@ myApp.controller('waitListController', ['$scope', '$firebase', function($scope, 
 	// list of parties
 	$scope.parties = $firebase(partiesFirebaseRef); 
 	// single party
-	$scope.party = {name: '', phone: '', size: ''};
+	$scope.newParty = {name: '', phone: '', size: ''};
 
 	// define function to submit form
 	$scope.saveParty = function() {
-		$scope.parties.$add($scope.party);
-		$scope.party = {name: '', phone: '', size: ''};
+		$scope.parties.$add($scope.newParty);
+		$scope.newParty = {name: '', phone: '', size: ''};
 	};
 }]);
