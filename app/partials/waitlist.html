@@ -24,17 +24,17 @@
     </tr>
   </thead>
   <tr ng-repeat="eachParty in parties | orderByPriority">
-    <td><input type="checkbox"></td>
+    <td><input type="checkbox" ng-model="eachParty.done" ng-change="parties.$save(eachParty.$id)"></td>
     <td>
       <div><strong>{{ eachParty.name }} ({{ eachParty.size }} people)</strong></div>
       <div> {{ eachParty.phone }} </div>
       <div> <!-- Add date created --> </div>
     </td>
     <td>
-      <div><!-- Add party notification --> </div>
+      <div>{{ eachParty.notified }}</div>
     </td>
     <td>
-      <button ng-click="sendTextMessage(eachParty.phone)" type="submit" class="btn btn-success">Send SMS</button>      
+      <button ng-click="sendTextMessage(eachParty)" type="submit" class="btn btn-success">Send SMS</button>      
       <button ng-click="parties.$remove(eachParty.$id)" type="submit" class="btn btn-danger">Remove</button>           
     </td>
   </tr>
